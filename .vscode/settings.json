@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "raylib.h": "c"
+  },
+  "C_Cpp.default.configurationProvider": "ms-vscode.cpptools",
+  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.errorSquiggles": "enabled",
+  "C_Cpp.loggingLevel": "Information",
+  "C_Cpp.autocomplete": "default",
+  "C_Cpp.intelliSenseCacheSize": 512,
+  "C_Cpp.clang_format_path": "/usr/bin/clang-format",
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+  "terminal.integrated.env.linux": {
+    "LD_LIBRARY_PATH": "${workspaceFolder}/raylib-5.0_linux_amd64/lib:${env:LD_LIBRARY_PATH}"
+  }
+}

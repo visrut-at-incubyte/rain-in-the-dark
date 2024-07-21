@@ -1,0 +1,11 @@
+- visited url: https://github.com/raysan5/raylib/releases/tag/5.0
+- downloded zip raylib-5.0_linux_amd64.tar.gz 
+
+tar -xvf raylib-5.0_linux_amd64.tar.gz
+rm raylib-5.0_linux_amd64.tar.gz
+
+touch main.c
+cc main.c -I./raylib-5.0_linux_amd64/include -L./raylib-5.0_linux_amd64/lib -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+
+export LD_LIBRARY_PATH=./raylib-5.0_linux_amd64/lib:$LD_LIBRARY_PATH
+./a.out
