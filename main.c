@@ -9,15 +9,42 @@
 int main() {
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Real Rain");
 
-  Image image = LoadImage("T-Shirt.png");
-  Texture2D texture = LoadTextureFromImage(image);
-  UnloadImage(image);
+  Texture2D dummy = LoadTexture("dummy.png");
+  Rectangle frameRec = {0.0f, 0.0f, (float)dummy.width / 3,
+                        (float)dummy.height};
+  Vector2 position = {SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
 
   SetTargetFPS(30);
+
+  int currentFrame = 0;
+  int framesCounter = 0;
 
   while (!WindowShouldClose()) {
     if (IsKeyDown(KEY_Q)) {
       break;
+    }
+
+    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT)) {
+      framesCounter++;
+
+      if (framesCounter >= (60 / 10)) {
+        framesCounter = 0;
+        currentFrame++;
+
+        if (currentFrame > 5) currentFrame = 0;
+
+        frameRec.x = (float)currentFrame * (float)dummy.width / 3;
+      }
+
+      if (IsKeyDown(KEY_RIGHT)) {
+        position.x += 2;
+      } else {
+        position.x -= 2;
+      }
+    } else {
+      framesCounter = 0;
+      currentFrame = 0;
+      frameRec.x = (float)currentFrame * (float)dummy.width / 3;
     }
 
     printf("frame time: %f\n", GetFrameTime());
@@ -25,9 +52,7 @@ int main() {
     BeginDrawing();
     ClearBackground(BLACK);
 
-    DrawTexture(texture, SCREEN_WIDTH / 2 - texture.width / 2,
-                SCREEN_HEIGHT / 2 - texture.height / 2, WHITE);
-    DrawText("this IS a texture loaded from an image!", 300, 370, 10, GRAY);
+    DrawTextureRec(dummy, frameRec, position, WHITE);
 
     EndDrawing();
   }
